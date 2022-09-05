@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "outDir": "out",
+        "sourceMap": true,
+        "allowJs": true,
+        "checkJs": true,
+        "downlevelIteration": true
+    },
+    "exclude": [
+        "out/*",
+        "node_modules",
+        "**/node_modules/*"
+    ]
+}
