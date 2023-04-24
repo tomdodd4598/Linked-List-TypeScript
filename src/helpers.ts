@@ -1,7 +1,6 @@
 import {Item, itemFold, itemFoldback} from "./item";
 
-export function insertItem<T>(start: Item<T>, val: T, insertBefore: (val: T, oth: Item<T>) => boolean): Item<T> {
-    console.log(`Creating item: ${val}`);
+export function insertItem<T>(start: Item<T>, val: T, insertBefore: (val: T, item: Item<T>) => boolean): Item<T> {
     let current = start, previous = null;
     
     while (current !== null && !insertBefore(val, current)) {
@@ -48,7 +47,7 @@ export function removeAll<T>(_start: Item<T>): Item<T> {
     return null;
 }
 
-export function printList<T>(start: Item<T>) {
+export function printLoop<T>(start: Item<T>) {
     while (start !== null) {
         start = start.printGetNext();
     }

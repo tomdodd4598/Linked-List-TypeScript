@@ -17,12 +17,12 @@ function isNumberString(str: string): boolean {
     return numberRegex.test(str);
 }
 
-function insertBefore(val: string, oth: Item<string>): boolean {
-    if (isNumberString(val) && isNumberString(oth.value)) {
-        return BigInt(val) <= BigInt(oth.value);
+function insertBefore(val: string, item: Item<string>): boolean {
+    if (isNumberString(val) && isNumberString(item.value)) {
+        return BigInt(val) <= BigInt(item.value);
     }
     else {
-        return val <= oth.value;
+        return val <= item.value;
     }
 }
 
@@ -33,7 +33,6 @@ function valueEquals(item: Item<string>, val: string): boolean {
 let start: Item<string> = null;
 
 let begin = true;
-let input: string = null;
 
 while (true) {
     if (!begin) {
@@ -44,7 +43,7 @@ while (true) {
     }
     
     console.log("Awaiting input...");
-    input = prompt("");
+    let input = prompt("");
     
     if (input === "") {
         console.log("\nProgram terminated!");
@@ -68,8 +67,8 @@ while (true) {
         }
     }
     else if (input === "l") {
-        console.log("\nList print...");
-        Helpers.printList(start);
+        console.log("\nLoop print...");
+        Helpers.printLoop(start);
     }
     else if (input === "i") {
         console.log("\nIterator print...");

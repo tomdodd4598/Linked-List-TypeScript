@@ -3,6 +3,7 @@ export class Item<T> implements Iterable<Item<T>> {
     next: Item<T> = null;
 
     constructor(value: T, next: Item<T>) {
+        console.log(`Creating item: ${value}`);
         this.value = value;
         this.next = next;
     }
@@ -22,8 +23,7 @@ export class Item<T> implements Iterable<Item<T>> {
     }
 
     printGetNext(): Item<T> {
-        process.stdout.write(this.value.toString());
-        process.stdout.write(this.next == null ? "\n" : ", ");
+        process.stdout.write(`${this.value}${this.next == null ? "\n" : ", "}`);
         return this.next;
     }
 }
@@ -33,10 +33,12 @@ export function itemFold<T, A, R>(fSome: (item: Item<T>, next: Item<T>, acc: A) 
         let next = item.next;
         if (next !== null) {
             return itemFold(fSome, fLast, fEmpty, fSome(item, next, accumulator), next);
-        } else {
+        }
+        else {
             return fLast(item, accumulator);
         }
-    } else {
+    }
+    else {
         return fEmpty(accumulator);
     }
 }
@@ -46,10 +48,12 @@ export function itemFoldback<T, A, R>(fSome: (item: Item<T>, next: Item<T>, inne
         let next = item.next;
         if (next !== null) {
             return itemFoldback(fSome, fLast, fEmpty, innerVal => generator(fSome(item, next, innerVal)), next);
-        } else {
+        }
+        else {
             return generator(fLast(item));
         }
-    } else {
+    }
+    else {
         return generator(fEmpty());
     }
 }
